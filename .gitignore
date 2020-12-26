@@ -1,0 +1,7 @@
+CMakeCache.txt
+CMakeFiles
+*.cmake
+Makefile
+advent2020
+input/[0-9]*
+*.sw?
