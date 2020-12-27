@@ -21,7 +21,7 @@ output_t day02(input_t in) {
 		in.s += 3, in.len -= 3;
 
 		// Use SIMD instructions to match characters
-		__m256i v = _mm256_loadu_si256((__m256i_u *) in.s);
+		__m256i v = _mm256_loadu_si256((__m256i *) in.s);
 
 		// Find the line length
 		auto len = __builtin_ctz(eq(v, '\n'));

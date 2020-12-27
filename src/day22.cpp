@@ -38,8 +38,13 @@ struct solver {
 	uint8_t hi;
 
 	// bitwise rotate left/right
-	static uint64_t rol(uint64_t n, int r) { return _lrotl(n, r); }
-	static uint64_t ror(uint64_t n, int r) { return _lrotr(n, r); }
+	static uint64_t rol(uint64_t n, int r) {
+		return (n << r) | (n >> (64 - r));
+	}
+
+	static uint64_t ror(uint64_t n, int r) {
+		return (n >> r) | (n << (64 - r));
+	}
 
 	// Hash function
 	static uint64_t H(int player, int card) {

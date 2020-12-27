@@ -12,23 +12,6 @@ static const std::vector<advent_t> advent2020 = {
 	{ day21 }, { day22 }, { day23 }, { day24 }, { day25 }
 };
 
-struct timing_t {
-	std::string input;
-	std::string part1;
-	std::string part2;
-	double t = 0;
-	timing_t(const std::string &line) {
-		std::stringstream ss(line);
-		std::getline(ss, input, '\t');
-		std::getline(ss, part1, '\t');
-		std::getline(ss, part2);
-	}
-	bool operator < (const struct timing_t &o) const {
-		return (t == o.t) ? (input < o.input) : (t < o.t);
-	}
-};
-using timing_vec = std::vector<timing_t>;
-
 static input_t load_input(const std::string &filename);
 static void free_input(input_t &input);
 
@@ -43,8 +26,6 @@ int main() {
 
 		char filename[64];
 		sprintf(filename, "input/day%02d.txt", day);
-
-		timing_vec V;
 
 		auto input = load_input(filename);
 		auto t0 = std::chrono::steady_clock::now();

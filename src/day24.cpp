@@ -99,8 +99,8 @@ output_t day24(input_t in) {
 
 	int min_y = INT32_MAX, max_y = INT32_MIN;
 	while (in.len) {
-		__m256i l = _mm256_loadu_si256((__m256i_u *) in.s);
-		__m256i h = _mm256_loadu_si256((__m256i_u *) in.s + 1);
+		__m256i l = _mm256_loadu_si256((__m256i *) in.s);
+		__m256i h = _mm256_loadu_si256((__m256i *) in.s + 1);
 
 		// Find positions of all n, s, w, e
 		auto n = eq2(l, h, 'n'), s = eq2(l, h, 's');
