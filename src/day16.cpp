@@ -77,7 +77,7 @@ output_t day16(input_t in) {
 
 	// Tag each field mask with position and population count
 	for (int i = 0; i < n_fields; i++) {
-		M[i] = (M[i] << 16) | (i << 8) | __builtin_popcountll(M[i]);
+		M[i] = (M[i] << 16) | (i << 8) | _mm_popcnt_u64(M[i]);
 	}
 
 	// Solve position-to-field mapping
@@ -90,7 +90,7 @@ output_t day16(input_t in) {
 
 		// Record the field number, then remove from the list
 		auto m = M[s];
-		F[__builtin_ctzll(m >> 16)] = uint8_t(m >> 8);
+		F[_mm_tzcnt_64(m >> 16)] = uint8_t(m >> 8);
 		M[s] = M.back();
 		M.pop_back();
 

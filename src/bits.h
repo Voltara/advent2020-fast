@@ -9,7 +9,7 @@ struct bits {
         bits(T mask) : mask(mask)             { }
         bits& operator++ ()                   { mask &= mask - 1; return *this; }
         bool operator!= (const bits &o) const { return mask != o.mask; }
-        inline int operator* () const         { return __builtin_ctzll(mask); }
+        inline int operator* () const         { return _mm_tzcnt_64(mask); }
         bits begin() const                    { return mask; }
         bits end() const                      { return 0; }
 };

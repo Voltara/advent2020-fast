@@ -77,9 +77,9 @@ output_t day21(input_t in) {
 	std::array<uint64_t, 9> Ingredient = { };
 	while (n_match) for (int i = 0; i < n_match; i++) {
 		Ha[i] &= allergens;
-		if (__builtin_popcountll(Ha[i]) != 1) continue;
+		if (_mm_popcnt_u64(Ha[i]) != 1) continue;
 		allergens ^= Ha[i];
-		Ingredient[__builtin_ctzll(Ha[i]) / 5] = Hw[i];
+		Ingredient[_mm_tzcnt_64(Ha[i]) / 5] = Hw[i];
 		Hw[i] = Hw[--n_match];
 		Ha[i] = Ha[n_match];
 	}

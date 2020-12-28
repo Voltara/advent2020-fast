@@ -171,7 +171,7 @@ struct grid {
 		int count = 0;
 		for (auto &row : G) {
 			for (auto k : row) {
-				count += __builtin_popcountll(k);
+				count += _mm_popcnt_u64(k);
 			}
 		}
 		return count;

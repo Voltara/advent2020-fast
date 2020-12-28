@@ -22,7 +22,7 @@ struct row {
 		int n = 0;
 		auto S = (uint64_t *) &R[0];
 		for (int i = 0; i < 8; i++) {
-			n += __builtin_popcountl(S[i]);
+			n += _mm_popcnt_u64(S[i]);
 		}
 		return n;
 	}

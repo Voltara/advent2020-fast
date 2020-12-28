@@ -24,14 +24,14 @@ output_t day02(input_t in) {
 		__m256i v = _mm256_loadu_si256((__m256i *) in.s);
 
 		// Find the line length
-		auto len = __builtin_ctz(eq(v, '\n'));
+		auto len = _mm_tzcnt_32(eq(v, '\n'));
 		parse::skip(in, len);
 
 		// Find all matching characters on current line
 		int match = eq(v, c) & ((1 << len) - 1);
 
 		// Part 1: Check if number of matches is in range
-		int count = __builtin_popcount(match);
+		int count = _mm_popcnt_u32(match);
 		part1 += (count >= from) && (count <= to);
 
 		// Part 2: Either or

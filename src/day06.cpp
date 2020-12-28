@@ -6,8 +6,8 @@ output_t day06(input_t in) {
 	uint32_t all_or = 0, all_and = -1;
 
 	auto check = [&]() {
-		part1 += __builtin_popcount(all_or);
-		part2 += __builtin_popcount(all_and);
+		part1 += _mm_popcnt_u32(all_or);
+		part2 += _mm_popcnt_u32(all_and);
 	};
 
 	while (in.len) {

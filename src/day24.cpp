@@ -17,7 +17,7 @@ struct row {
 		auto p = (uint64_t *) &R[0];
 		int c = 0;
 		for (int i = 0; i < 8; i++) {
-			c += __builtin_popcountll(p[i]);
+			c += _mm_popcnt_u64(p[i]);
 		}
 		return c;
 	}
@@ -109,15 +109,15 @@ output_t day24(input_t in) {
 		// Find line length and mask the values
 		auto mask = n | s | w | e;
 		mask = mask ^ (mask + 1);
-		parse::skip(in, __builtin_ctzll(~mask));
+		parse::skip(in, _mm_tzcnt_64(~mask));
 		n &= mask, s &= mask, w &= mask, e &= mask;
 
 		// Compute mapped hex coordinates
 		int x = 84, y = 128;
-		x += __builtin_popcountll(e & ~(n << 1));
-		x -= __builtin_popcountll(w & ~(s << 1));
-		y += __builtin_popcountll(s);
-		y -= __builtin_popcountll(n);
+		x += _mm_popcnt_u64(e & ~(n << 1));
+		x -= _mm_popcnt_u64(w & ~(s << 1));
+		y += _mm_popcnt_u64(s);
+		y -= _mm_popcnt_u64(n);
 
 		min_y = std::min(min_y, y);
 		max_y = std::max(max_y, y);

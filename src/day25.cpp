@@ -42,7 +42,7 @@ static int dlog29(int n) {
 			0xffffff1a1c6615dc, 0x696ac3fae8143b9e,
 			0x8018b1cea1f4be4c, 0x757d308c0064b001);
 	__m256i v = _mm256_set1_epi8(modpow(n, 696594) % 255);
-	return __builtin_ctz(_mm256_movemask_epi8(_mm256_cmpeq_epi8(L, v)));
+	return _mm_tzcnt_32(_mm256_movemask_epi8(_mm256_cmpeq_epi8(L, v)));
 }
 
 static int dlog3(int n) {

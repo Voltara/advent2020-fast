@@ -72,8 +72,8 @@ struct solver1 {
 			for (int y = y_min; y < y_max; y++) {
 				int add = 0;
 				auto r = G(z,y);
-				add += __builtin_popcountll(uint64_t(r));
-				add += __builtin_popcountll(uint64_t(r>>64));
+				add += _mm_popcnt_u64(uint64_t(r));
+				add += _mm_popcnt_u64(uint64_t(r>>64));
 				add <<= !!z;
 				c += add;
 			}
@@ -165,8 +165,8 @@ struct solver2 {
 				for (int y = y_min; y < y_max; y++) {
 					int add = 0;
 					auto r = G(w,z,y);
-					add += __builtin_popcountll(uint64_t(r));
-					add += __builtin_popcountll(uint64_t(r>>64));
+					add += _mm_popcnt_u64(uint64_t(r));
+					add += _mm_popcnt_u64(uint64_t(r>>64));
 					add <<= !!z + !!w + (w != z);
 					c += add;
 				}
