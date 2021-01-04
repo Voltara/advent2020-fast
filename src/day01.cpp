@@ -12,7 +12,7 @@ struct bitset2048 {
 	}
 
 	bool test(int n) const {
-		return (B[n >> 6] >> n) & 1;
+		return (B[n >> 6] >> (n & 63)) & 1;
 	}
 
 	// Return sorted list of members
